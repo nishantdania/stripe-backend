@@ -91,7 +91,7 @@ module.exports = {
 	}
   },
   
-removeCoupon: function(req, res) {
+  removeCoupon: function(req, res) {
 	if(!req.body.id) res.json(400, {err: 'Invalid Coupon Id'});
 	User.findOne({username: req.token.username}, function (err, user) {
 		if (err) res.json(400, {err: err});
@@ -105,6 +105,29 @@ removeCoupon: function(req, res) {
 			}
 		}
 	});
+  },
+
+  getCoupons: function (req, res) {
+	if (req.token) {
+		User.findOne({username : req.token.username}, function (err, user) {
+			if (err) res.json(err.status, {err: err});
+			else if (user) {
+				var stripe = require("stripe")(user.stripe_secret);
+					stripe.coupons.list(
+						{},
+						function(err, coupons) {
+							res.json(200, {coupons: coupons});
+						}
+					);
+			}
+			else {
+				res.json(403, {err: 'User not found'});
+			}
+		});
+	}	
+	else {
+		res.json(401, {err: 'Invalid token'});
+	}
   }	
 };
 
