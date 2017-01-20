@@ -25,9 +25,14 @@ module.exports.policies = {
   * access)                                                                  *
   *                                                                          *
   ***************************************************************************/
-
-  // '*': true,
-
+  /** Require auth check for all by default except login and signup **/
+  '*': ['isAuthorized'],
+	'UserController': {
+    	'create': true
+	},
+	'AuthController': {
+		'*': true 
+	}
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
