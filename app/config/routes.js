@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   'POST /signup': 'UserController.create',
-  'POST /login': 'AuthController.login'
+  'POST /login': 'AuthController.login',
+  'POST /addCoupon' : 'CouponsController.addCoupon'
   
 
   /***************************************************************************
