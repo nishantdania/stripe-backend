@@ -14,16 +14,16 @@ function addUserToStripe(user, callback) {
 		country: "US",
 		managed: true
 		}, function (err, account) {
-				if (err) return callback(err, null);
-				else if (account) {
-					callback(null, user, account);
-					var secret = account.keys.secret;
-					user.stripe_id = account.id;
-					user.stripe_secret = secret;
-					user.save(function(err, user) {
-						if(err) return callback(err, null);
-						if(user) callback(null, user, account);
-					});
+			if (err) return callback(err, null);
+			else if (account) {
+				callback(null, user, account);
+				var secret = account.keys.secret;
+				user.stripe_id = account.id;
+				user.stripe_secret = secret;
+				user.save(function(err, user) {
+					if(err) return callback(err, null);
+					if(user) callback(null, user, account);
+				});
 			}
 		}
 	);
