@@ -26,7 +26,7 @@ function addUserToStripe(user, callback) {
 					});
 			}
 		}
-			);
+	);
 }
 
 function updateUserSecret(user, account, callback) {
