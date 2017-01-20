@@ -89,6 +89,22 @@ module.exports = {
 			}
 		});		
 	}
+  },
+  
+removeCoupon: function(req, res) {
+	if(!req.body.id) res.json(400, {err: 'Invalid Coupon Id'});
+	User.findOne({username: req.token.username}, function (err, user) {
+		if (err) res.json(400, {err: err});
+		else if (user) {
+			if(user.coupons.indexOf(req.body.id) > -1) {
+				user.coupons.splice(user.coupons.indexOf(req.body.id), 1);
+				user.save();
+				var stripe = require("stripe")(user.stripe_secret);
+				stripe.coupons.del(req.body.id);
+				res.json(200, {success: true});
+			}
+		}
+	});
   }	
 };
 
