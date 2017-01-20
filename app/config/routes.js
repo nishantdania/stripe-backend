@@ -32,11 +32,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /signup': 'UserController.create',
-  'POST /login': 'AuthController.login',
-  'POST /addCoupon' : 'CouponsController.addCoupon',
-  'POST /removeCoupon' : 'CouponsController.removeCoupon',
-  'GET /userCoupons': 'CouponsController.getCoupons'
+  'POST /api/signup': 'UserController.create',
+  'POST /api/login': 'AuthController.login',
+  'POST /api/addCoupon' : 'CouponsController.addCoupon',
+  'POST /api/removeCoupon' : 'CouponsController.removeCoupon',
+  'GET /api/userCoupons': 'CouponsController.getCoupons'
   
 
   /***************************************************************************
